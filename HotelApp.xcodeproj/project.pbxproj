@@ -14,6 +14,8 @@
 		3ADC2DF52AA07B81006B2174 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2DF42AA07B81006B2174 /* HotelModel.swift */; };
 		3ADC2DF72AA07BC3006B2174 /* HotelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2DF62AA07BC3006B2174 /* HotelViewModel.swift */; };
 		3ADC2DFF2AA099EC006B2174 /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ADC2DFE2AA099EC006B2174 /* SFProDisplay-Medium.ttf */; };
+		3ADC2E032AA09C6B006B2174 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2E022AA09C6B006B2174 /* CustomColor.swift */; };
+		3ADC2E052AA0A276006B2174 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3ADC2E042AA0A276006B2174 /* SF-Pro-Display-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		3ADC2DF62AA07BC3006B2174 /* HotelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelViewModel.swift; sourceTree = "<group>"; };
 		3ADC2DFD2AA0990C006B2174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3ADC2DFE2AA099EC006B2174 /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		3ADC2E022AA09C6B006B2174 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		3ADC2E042AA0A276006B2174 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +62,8 @@
 		3ADC2DE22AA07957006B2174 /* HotelApp */ = {
 			isa = PBXGroup;
 			children = (
+				3ADC2E002AA09C55006B2174 /* Helpers */,
 				3ADC2DFD2AA0990C006B2174 /* Info.plist */,
-				3ADC2DF82AA0972D006B2174 /* Fonts */,
 				3ADC2DE32AA07957006B2174 /* HotelAppApp.swift */,
 				3ADC2DF22AA07A85006B2174 /* Model */,
 				3ADC2DF32AA07A8E006B2174 /* ViewModel */,
@@ -106,8 +110,26 @@
 			isa = PBXGroup;
 			children = (
 				3ADC2DFE2AA099EC006B2174 /* SFProDisplay-Medium.ttf */,
+				3ADC2E042AA0A276006B2174 /* SF-Pro-Display-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3ADC2E002AA09C55006B2174 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3ADC2E012AA09C5F006B2174 /* Extensions */,
+				3ADC2DF82AA0972D006B2174 /* Fonts */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3ADC2E012AA09C5F006B2174 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3ADC2E022AA09C6B006B2174 /* CustomColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADC2E052AA0A276006B2174 /* SF-Pro-Display-Semibold.otf in Resources */,
 				3ADC2DEB2AA07959006B2174 /* Preview Assets.xcassets in Resources */,
 				3ADC2DE82AA07959006B2174 /* Assets.xcassets in Resources */,
 				3ADC2DFF2AA099EC006B2174 /* SFProDisplay-Medium.ttf in Resources */,
@@ -184,6 +207,7 @@
 				3ADC2DE62AA07957006B2174 /* HotelView.swift in Sources */,
 				3ADC2DF52AA07B81006B2174 /* HotelModel.swift in Sources */,
 				3ADC2DE42AA07957006B2174 /* HotelAppApp.swift in Sources */,
+				3ADC2E032AA09C6B006B2174 /* CustomColor.swift in Sources */,
 				3ADC2DF72AA07BC3006B2174 /* HotelViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

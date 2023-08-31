@@ -35,10 +35,10 @@ class HotelViewModel: ObservableObject {
     
     private func loadImages(from urls: [String]) {
         DispatchQueue.global().async {
-            var images: [(url: String, image: UIImage)] = [] // Временный массив для сохранения пар URL и изображений
+            var images: [(url: String, image: UIImage)] = []
             for url in urls {
                 if let imageUrl = URL(string: url), let imageData = try? Data(contentsOf: imageUrl), let image = UIImage(data: imageData) {
-                    images.append((url: url, image: image)) // Сохраняем пару URL и изображения
+                    images.append((url: url, image: image))
                 }
             }
             DispatchQueue.main.async {
@@ -46,34 +46,4 @@ class HotelViewModel: ObservableObject {
             }
         }
     }
-    
-//    func fetchImages() {
-//        if let imageUrlStrings = hotelModel?.image_urls {
-//            let group = DispatchGroup() // Создаем группу для управления асинхронными операциями
-//            
-//            for imageUrlString in imageUrlStrings {
-//                group.enter() // Входим в группу перед началом загрузки
-//                
-//                if let imageUrl = URL(string: imageUrlString) {
-//                    URLSession.shared.dataTask(with: imageUrl) { data, _, _ in
-//                        defer {
-//                            group.leave() // Выходим из группы после окончания загрузки
-//                        }
-//                        
-//                        if let imageData = data,
-//                           let image = UIImage(data: imageData) {
-//                            DispatchQueue.main.async {
-//                                self.loadedImages.append(image)
-//                            }
-//                        }
-//                    }.resume()
-//                }
-//            }
-//            
-//            group.notify(queue: .main) {
-//                // Все асинхронные операции завершены
-//                // Вы можете выполнять дополнительные действия здесь, если необходимо
-//            }
-//        }
-//    }
 }
