@@ -46,4 +46,16 @@ class HotelViewModel: ObservableObject {
             }
         }
     }
+    
+    func formattedPrice(_ price: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.numberStyle = .decimal
+        if let formattedNumber = numberFormatter.string(from: NSNumber(value: price)) {
+            return formattedNumber
+        } else {
+            return String(price)
+        }
+    }
+
 }
