@@ -13,6 +13,7 @@
 		3ADC2DEB2AA07959006B2174 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ADC2DEA2AA07959006B2174 /* Preview Assets.xcassets */; };
 		3ADC2DF52AA07B81006B2174 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2DF42AA07B81006B2174 /* HotelModel.swift */; };
 		3ADC2DF72AA07BC3006B2174 /* HotelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2DF62AA07BC3006B2174 /* HotelViewModel.swift */; };
+		3ADC2DFF2AA099EC006B2174 /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ADC2DFE2AA099EC006B2174 /* SFProDisplay-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,8 @@
 		3ADC2DEA2AA07959006B2174 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3ADC2DF42AA07B81006B2174 /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
 		3ADC2DF62AA07BC3006B2174 /* HotelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelViewModel.swift; sourceTree = "<group>"; };
+		3ADC2DFD2AA0990C006B2174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3ADC2DFE2AA099EC006B2174 /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,8 @@
 		3ADC2DE22AA07957006B2174 /* HotelApp */ = {
 			isa = PBXGroup;
 			children = (
+				3ADC2DFD2AA0990C006B2174 /* Info.plist */,
+				3ADC2DF82AA0972D006B2174 /* Fonts */,
 				3ADC2DE32AA07957006B2174 /* HotelAppApp.swift */,
 				3ADC2DF22AA07A85006B2174 /* Model */,
 				3ADC2DF32AA07A8E006B2174 /* ViewModel */,
@@ -95,6 +100,14 @@
 				3ADC2DF62AA07BC3006B2174 /* HotelViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3ADC2DF82AA0972D006B2174 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3ADC2DFE2AA099EC006B2174 /* SFProDisplay-Medium.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +170,7 @@
 			files = (
 				3ADC2DEB2AA07959006B2174 /* Preview Assets.xcassets in Resources */,
 				3ADC2DE82AA07959006B2174 /* Assets.xcassets in Resources */,
+				3ADC2DFF2AA099EC006B2174 /* SFProDisplay-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +316,7 @@
 				DEVELOPMENT_TEAM = CD2H8U7Z2G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HotelApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -332,6 +347,7 @@
 				DEVELOPMENT_TEAM = CD2H8U7Z2G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HotelApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
