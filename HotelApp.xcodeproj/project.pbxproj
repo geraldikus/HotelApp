@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A96C7D72AA20926009DD4ED /* WrappedLayoutRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */; };
+		3A96C7D92AA20EEA009DD4ED /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96C7D82AA20EEA009DD4ED /* BookingView.swift */; };
 		3ABF743D2AA1CC1E003D6262 /* WrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF743C2AA1CC1E003D6262 /* WrappedLayout.swift */; };
 		3ABF743F2AA1D0D0003D6262 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF743E2AA1D0D0003D6262 /* RoomView.swift */; };
 		3ABF74412AA1D95D003D6262 /* HotelMainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF74402AA1D95D003D6262 /* HotelMainInfoView.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayoutRoom.swift; sourceTree = "<group>"; };
+		3A96C7D82AA20EEA009DD4ED /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		3ABF743C2AA1CC1E003D6262 /* WrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayout.swift; sourceTree = "<group>"; };
 		3ABF743E2AA1D0D0003D6262 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		3ABF74402AA1D95D003D6262 /* HotelMainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelMainInfoView.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				3ABF74442AA1EAE7003D6262 /* Hotels */,
 				3ABF74492AA1F544003D6262 /* Rooms */,
+				3A96C7D82AA20EEA009DD4ED /* BookingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				3ABF743C2AA1CC1E003D6262 /* WrappedLayout.swift */,
+				3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */,
 				3ADC2E012AA09C5F006B2174 /* Extensions */,
 				3ADC2DF82AA0972D006B2174 /* Fonts */,
 			);
@@ -243,9 +249,11 @@
 				3ABF74462AA1F47B003D6262 /* RoomModel.swift in Sources */,
 				3ABF74432AA1DC39003D6262 /* HotelDetailsInfoView.swift in Sources */,
 				3ADC2DE42AA07957006B2174 /* HotelAppApp.swift in Sources */,
+				3A96C7D92AA20EEA009DD4ED /* BookingView.swift in Sources */,
 				3ABF743F2AA1D0D0003D6262 /* RoomView.swift in Sources */,
 				3ABF74412AA1D95D003D6262 /* HotelMainInfoView.swift in Sources */,
 				3ADC2E032AA09C6B006B2174 /* CustomColor.swift in Sources */,
+				3A96C7D72AA20926009DD4ED /* WrappedLayoutRoom.swift in Sources */,
 				3ADC2DF72AA07BC3006B2174 /* HotelViewModel.swift in Sources */,
 				3ABF74482AA1F4C3003D6262 /* RoomViewModel.swift in Sources */,
 				3ABF743D2AA1CC1E003D6262 /* WrappedLayout.swift in Sources */,

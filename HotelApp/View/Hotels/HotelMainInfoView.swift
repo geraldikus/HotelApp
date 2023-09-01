@@ -12,7 +12,7 @@ struct HotelMainInfoView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .foregroundColor(Color(.systemBackground))
-            .frame(height: 500)
+            .frame(height: 450)
             .overlay(alignment: .top) {
                 
                 VStack {

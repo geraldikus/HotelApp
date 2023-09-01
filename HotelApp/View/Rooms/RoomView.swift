@@ -22,7 +22,7 @@ struct RoomView: View {
                     VStack {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(Color(.systemBackground))
-                            .frame(height: 500)
+                            .frame(height: 540)
                             .overlay(alignment: .top) {
                                 
                                 //MARK: - Photos
@@ -53,6 +53,15 @@ struct RoomView: View {
                                         .font(.custom("SFProDisplay-Medium", size: 22))
                                         .padding(.leading)
                                     
+                                    //MARK: - Includes
+                                    VStack {
+                                        WrappedLayoutRoom(platforms: room.peculiarities, viewModel: RoomViewModel())
+                                            .padding(.leading)
+                                            
+                                    }
+                                    
+                                    //MARK: - More Information
+                                    
                                     Button {
                                         
                                     } label: {
@@ -68,6 +77,30 @@ struct RoomView: View {
                                     .cornerRadius(5)
                                     .padding(.leading)
                                     
+                                    //MARK: - Price
+                                    
+                                    HStack {
+                                        Text("от \(hotelViewModel.formattedPrice(room.price)) ₽")
+                                            .font(.system(size: 30).bold())
+                                        Text(room.price_per)
+                                            .padding(.top, 7)
+                                            .font(.system(size: 14))
+                                            .lineLimit(1)
+                                            .foregroundColor(Color(hex: "828796", alpha: 1))
+                                    }
+                                    .padding(.horizontal)
+                                    
+                                    //MARK: - Navigation
+                                    
+                                    NavigationLink(destination: BookingView()) {
+                                        Text("Выбрать номер")
+                                            .foregroundColor(.white)
+                                    }
+                                    .frame(height: 48)
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color(hex: "0D72FF", alpha: 1))
+                                    .cornerRadius(10)
+                                    .padding(.horizontal)
 
                                     
                                 }
@@ -82,7 +115,7 @@ struct RoomView: View {
                 
                 
             }
-            .navigationTitle("Hotel name")
+            .navigationTitle("Steigenberger Makadi")
 
             .navigationBarTitleDisplayMode(.inline)
         }
