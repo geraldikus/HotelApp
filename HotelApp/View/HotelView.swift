@@ -11,16 +11,15 @@ struct HotelView: View {
     
     @StateObject var viewModel = HotelViewModel()
     
-    let columns = [
-           GridItem(.adaptive(minimum: 80))
-       ]
+    private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
+                
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    //MARK: - Photos
+                    //MARK: - Block 1
                     
                     TabView {
                         ForEach(viewModel.hotelModel?.image_urls ?? [], id: \.self) { imageUrl in
@@ -89,78 +88,77 @@ struct HotelView: View {
                     }
                     .padding(.top)
                     
-                    //MARK: - Detailed information about the hotel
+                    //MARK: - Block 2
                     
                     Text("Об отеле")
                         .padding()
                         .font(.custom("SFProDisplay-Medium", size: 22))
                     
-                    ForEach(viewModel.hotelModel?.about_the_hotel.peculiarities ?? [], id: \.self) { peculiarity in
-                        Text(peculiarity)
-                            .background(Color(hex: "FBFBFC", alpha: 1))
-                            .font(.custom("SFProDisplay-Medium", size: 16))
-                            .foregroundColor(Color(hex: "828796", alpha: 1))
+                    LazyVGrid(columns: gridItemLayout, spacing: 10) {
+                        ForEach(viewModel.hotelModel?.about_the_hotel.peculiarities ?? [], id: \.self) { peculiarity in
+                            Text(peculiarity)
+                                .background(Color(hex: "FBFBFC", alpha: 1))
+                                .cornerRadius(5)
+                                .font(.custom("SFProDisplay-Medium", size: 13))
+                                .foregroundColor(Color(hex: "828796", alpha: 1))
+                        }
                     }
                     .padding(.leading)
                     
                     Text(viewModel.hotelModel?.about_the_hotel.description ?? "")
                         .padding(.leading)
+                        .padding(.top)
+                    
                     
                     RoundedRectangle(cornerRadius: 20)
-                        .frame(height: 185)
+                        .frame(height: 200)
                         .padding()
                         .foregroundColor(Color(hex: "FBFBFC", alpha: 1))
                         .overlay {
                             VStack(spacing: 15) {
-                                HStack {
-                                    Image("happy")
-                                        .frame(width: 24, height: 24)
-                                    VStack(alignment: .leading) {
-                                        Text("Удобства")
-                                        Text("Самое необходимое")
-                                    }
-                                    Spacer()
-                                    Image("arrow")
+                                
+                                Button {
+                                    //
+                                } label: {
+                                    createCustomLabel(image: "happy", title: "Удобства", subtitle: "Самое необходимое")
                                 }
-                                .padding(.horizontal, 30)
                                 
                                 RoundedRectangle(cornerRadius: 5)
                                     .frame(height: 1)
                                     .padding(.leading, 65)
                                     .padding(.trailing, 30)
-                                    .foregroundColor(Color(hex: "828796", alpha: 1))
+                                    .foregroundColor(Color(hex: "828796", alpha: 0.15))
                                 
-                                HStack {
-                                    Image("happy")
-                                        .frame(width: 24, height: 24)
-                                    VStack(alignment: .leading) {
-                                        Text("Удобства")
-                                        Text("Самое необходимое")
-                                    }
-                                    Spacer()
-                                    Image("arrow")
+                                Button {
+                                    //
+                                } label: {
+                                    createCustomLabel(image: "happy", title: "Удобства", subtitle: "Самое необходимое")
                                 }
-                                .padding(.horizontal, 30)
                                 
                                 RoundedRectangle(cornerRadius: 5)
                                     .frame(height: 1)
                                     .padding(.leading, 65)
                                     .padding(.trailing, 30)
-                                    .foregroundColor(Color(hex: "828796", alpha: 1))
+                                    .foregroundColor(Color(hex: "828796", alpha: 0.15))
                                 
-                                HStack {
-                                    Image("happy")
-                                        .frame(width: 24, height: 24)
-                                    VStack(alignment: .leading) {
-                                        Text("Удобства")
-                                        Text("Самое необходимое")
-                                    }
-                                    Spacer()
-                                    Image("arrow")
+                                Button {
+                                    //
+                                } label: {
+                                    createCustomLabel(image: "happy", title: "Удобства", subtitle: "Самое необходимое")
                                 }
-                                .padding(.horizontal, 30)
                             }
                         }
+                    
+                    NavigationLink(destination: RoomView()) {
+                        Text("К выбору номера")
+                            .foregroundColor(.white)
+                    }
+                    .frame(height: 48)
+                    .frame(maxWidth: .infinity)
+                    .background(Color(hex: "0D72FF", alpha: 1))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    
                     
                 }
                 .padding(.horizontal, 5)
@@ -172,10 +170,25 @@ struct HotelView: View {
             viewModel.fetch()
         }
     }
+    
+    
+    func createCustomLabel(image: String, title: String, subtitle: String) -> some View {
+        HStack {
+            Image(image)
+                .frame(width: 24, height: 24)
+            VStack(alignment: .leading) {
+                Text(title)
+                    .foregroundColor(Color(.label))
+                Text(subtitle)
+                    .foregroundColor(Color(.label))
+            }
+            Spacer()
+            Image("arrow")
+        }
+        .padding(.horizontal, 30)
+    }
+    
 }
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

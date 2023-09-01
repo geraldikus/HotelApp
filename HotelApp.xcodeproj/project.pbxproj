@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ABF743D2AA1CC1E003D6262 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF743C2AA1CC1E003D6262 /* Test.swift */; };
+		3ABF743F2AA1D0D0003D6262 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF743E2AA1D0D0003D6262 /* RoomView.swift */; };
 		3ADC2DE42AA07957006B2174 /* HotelAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2DE32AA07957006B2174 /* HotelAppApp.swift */; };
 		3ADC2DE62AA07957006B2174 /* HotelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC2DE52AA07957006B2174 /* HotelView.swift */; };
 		3ADC2DE82AA07959006B2174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ADC2DE72AA07959006B2174 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3ABF743C2AA1CC1E003D6262 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		3ABF743E2AA1D0D0003D6262 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		3ADC2DE02AA07957006B2174 /* HotelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADC2DE32AA07957006B2174 /* HotelAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelAppApp.swift; sourceTree = "<group>"; };
 		3ADC2DE52AA07957006B2174 /* HotelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelView.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				3ADC2DE52AA07957006B2174 /* HotelView.swift */,
+				3ABF743E2AA1D0D0003D6262 /* RoomView.swift */,
+				3ABF743C2AA1CC1E003D6262 /* Test.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,8 +213,10 @@
 				3ADC2DE62AA07957006B2174 /* HotelView.swift in Sources */,
 				3ADC2DF52AA07B81006B2174 /* HotelModel.swift in Sources */,
 				3ADC2DE42AA07957006B2174 /* HotelAppApp.swift in Sources */,
+				3ABF743F2AA1D0D0003D6262 /* RoomView.swift in Sources */,
 				3ADC2E032AA09C6B006B2174 /* CustomColor.swift in Sources */,
 				3ADC2DF72AA07BC3006B2174 /* HotelViewModel.swift in Sources */,
+				3ABF743D2AA1CC1E003D6262 /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
