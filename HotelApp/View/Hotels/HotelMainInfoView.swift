@@ -1,5 +1,5 @@
 //
-//  Test.swift
+//  HotelBlock1.swift
 //  HotelApp
 //
 //  Created by Anton on 01.09.23.
@@ -7,21 +7,15 @@
 
 import SwiftUI
 
-struct Test: View {
-    
+struct HotelMainInfoView: View {
     @StateObject var viewModel = HotelViewModel()
-    private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible())]
-    
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
+        RoundedRectangle(cornerRadius: 10)
             .foregroundColor(Color(.systemBackground))
             .frame(height: 500)
-//            .foregroundColor(Color.gray)
-            .overlay {
-                VStack(alignment: .leading, spacing: 10) {
-                    
-                    
-                    
+            .overlay(alignment: .top) {
+                
+                VStack {
                     TabView {
                         ForEach(viewModel.hotelModel?.image_urls ?? [], id: \.self) { imageUrl in
                             if let image = viewModel.loadedImages.first(where: { $0.url == imageUrl })?.image {
@@ -41,6 +35,7 @@ struct Test: View {
                     .frame(height: 250)
                     .cornerRadius(20)
                     .padding(.horizontal)
+                    .padding(.top)
                     
                     //MARK: - Rating
                     
@@ -61,45 +56,49 @@ struct Test: View {
                         Spacer()
                     }
                     
-                    //MARK: - Name and address
+                    //MARK: - Name
                     
                     Text(viewModel.hotelModel?.name ?? "Name")
                         .font(.custom("SFProDisplay-Medium", size: 22))
-                        .padding(.leading)
+                        .padding(.horizontal)
                     
                     Button {
                         print("Adress tapped")
                     } label: {
                         Text(viewModel.hotelModel?.adress ?? "")
                             .font(.custom("SFProDisplay-Medium", size: 14))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading)
+                            //.frame(maxWidth: .infinity, alignment: .leading)
+                            //.padding(.leading, 30)
+                            //.padding(.top, 5)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 5)
+                  
                     
-                    //MARK: - Price
+                //MARK: - Price
                     
                     HStack {
                         Text("от \(viewModel.formattedPrice(viewModel.hotelModel?.minimal_price ?? 0)) ₽")
                             .font(.system(size: 30).bold())
-                            .padding(.leading)
                         Text(viewModel.hotelModel?.price_for_it ?? "")
                             .padding(.top, 7)
                             .font(.system(size: 16))
                             .foregroundColor(Color(hex: "828796", alpha: 1))
                     }
-                    .padding(.top)
-                    
+                    .padding(.horizontal)
+                    //.padding(.top)
                 }
                 
             }
-        
+            .onAppear {
+                viewModel.fetch()
+            }
     }
+}
 
-    
-    
-    struct Test_Previews: PreviewProvider {
-        static var previews: some View {
-            Test()
-        }
+struct HotelBlock1_Previews: PreviewProvider {
+    static var previews: some View {
+        HotelMainInfoView()
     }
 }
