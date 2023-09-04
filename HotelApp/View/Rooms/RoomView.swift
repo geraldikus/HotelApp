@@ -38,12 +38,11 @@ struct RoomView: View {
                                     VStack {
                                         WrappedLayoutRoom(platforms: room.peculiarities, viewModel: RoomViewModel())
                                             .padding(.leading)
-                                            
                                     }
                                     
                                     //MARK: - More Information
                                     
-                                    RoomMoreInfo()
+                                    RoomMoreInfoView()
                                     
                                     //MARK: - Price
                                     
@@ -60,8 +59,6 @@ struct RoomView: View {
                                     .background(Color(hex: "0D72FF", alpha: 1))
                                     .cornerRadius(10)
                                     .padding(.horizontal)
-
-                                    
                                 }
                             }
                             .padding(.top)
@@ -91,90 +88,6 @@ struct RoomView: View {
         }
     }
 }
-
-struct RoomPriceView: View {
-    
-    let price: Int
-    let pricePer: String
-    let hotelViewModel: HotelViewModel
-    
-    var body: some View {
-        HStack {
-            Text("от \(hotelViewModel.formattedPrice(price)) ₽")
-                .font(.system(size: 30).bold())
-            Text(pricePer)
-                .padding(.top, 7)
-                .font(.system(size: 14))
-                .lineLimit(1)
-                .foregroundColor(Color(hex: "828796", alpha: 1))
-        }
-        .padding(.horizontal)
-    }
-}
-
-struct RoomMoreInfo: View {
-    var body: some View {
-        Button {
-            
-        } label: {
-            HStack {
-                Text("Подробнее о номере")
-                Image("blueArrow")
-            }
-            .padding(.horizontal, 5)
-                
-        }
-        .frame(height: 29)
-        .background(Color(hex: "0D72FF", alpha: 0.1))
-        .cornerRadius(5)
-        .padding(.leading)
-    }
-}
-
-struct RoomPhotosView: View {
-    
-    let imageURLs: [String]
-    let loadedImages: [(url: String, image: UIImage)]
-    
-    var body: some View {
-                TabView {
-                ForEach(imageURLs, id: \.self) { imageUrl in
-                    if let image = loadedImages.first(where: { $0.url == imageUrl })?.image {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 250)
-                    } else {
-                        ProgressView()
-                    }
-                }
-            }
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            .background(Color.gray)
-            .frame(height: 250)
-            .cornerRadius(20)
-            .padding(.horizontal)
-            .padding(.top)
-        }
-}
-
-//struct CustomBackButton: View {
-//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-//
-//    var roomView: RoomView
-//    var body: some View {
-//        Button(action: {
-//            presentationMode.wrappedValue.dismiss()
-//        }) {
-//            Image(systemName: "chevron.left")
-//                .foregroundColor(.black)
-//        }
-//    }
-//}
-
-
-
 
 struct RoomView_Previews: PreviewProvider {
     static var previews: some View {
