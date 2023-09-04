@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A00A4E72AA5DFCF0091314C /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00A4E62AA5DFCF0091314C /* BookingModel.swift */; };
 		3A96C7D72AA20926009DD4ED /* WrappedLayoutRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */; };
 		3A96C7D92AA20EEA009DD4ED /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96C7D82AA20EEA009DD4ED /* BookingView.swift */; };
 		3ABF743D2AA1CC1E003D6262 /* WrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABF743C2AA1CC1E003D6262 /* WrappedLayout.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A00A4E62AA5DFCF0091314C /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayoutRoom.swift; sourceTree = "<group>"; };
 		3A96C7D82AA20EEA009DD4ED /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		3ABF743C2AA1CC1E003D6262 /* WrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayout.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				3ADC2DF42AA07B81006B2174 /* HotelModel.swift */,
 				3ABF74452AA1F47B003D6262 /* RoomModel.swift */,
+				3A00A4E62AA5DFCF0091314C /* BookingModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				3ADC2E032AA09C6B006B2174 /* CustomColor.swift in Sources */,
 				3A96C7D72AA20926009DD4ED /* WrappedLayoutRoom.swift in Sources */,
 				3ADC2DF72AA07BC3006B2174 /* HotelViewModel.swift in Sources */,
+				3A00A4E72AA5DFCF0091314C /* BookingModel.swift in Sources */,
 				3ABF74482AA1F4C3003D6262 /* RoomViewModel.swift in Sources */,
 				3ABF743D2AA1CC1E003D6262 /* WrappedLayout.swift in Sources */,
 			);

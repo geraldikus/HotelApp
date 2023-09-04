@@ -24,7 +24,7 @@ struct HotelView: View {
                     HotelMainInfoView()
                     HotelDetailsInfoView()
                     
-                    NavigationLink(destination: RoomView()) {
+                    NavigationLink(destination: RoomView().navigationBarBackButtonHidden(true)) {
                         Text("К выбору номера")
                             .foregroundColor(.white)
                     }
@@ -33,6 +33,8 @@ struct HotelView: View {
                     .background(Color(hex: "0D72FF", alpha: 1))
                     .cornerRadius(10)
                     .padding(.horizontal)
+                    .navigationBarBackButtonHidden(true)
+                    
                 }
                 .background(Color(colorBack))
                 .edgesIgnoringSafeArea(.top)
