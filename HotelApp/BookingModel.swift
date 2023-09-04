@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct BookingModel: Codable {
     let id: Int
     let hotel_name: String
