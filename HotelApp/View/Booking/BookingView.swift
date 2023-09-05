@@ -214,7 +214,7 @@ struct CustomDisclosureGroup<Content: View>: View {
                         .foregroundColor(.black)
                         .font(.custom("SFProDisplay-Medium", size: 22))
                     Spacer()
-                    Image(systemName: isExpanded ? "chevron.up.circle" : "chevron.down.circle")
+                    Image(isExpanded ? "upArrow" : "downArrow")
                         .foregroundColor(.blue)
                 }
             }
