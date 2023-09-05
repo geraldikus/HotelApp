@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhoneNumberView: View {
-    @Binding var phoneNumber: String
+    @State var phoneNumber: String
     
     var body: some View {
         

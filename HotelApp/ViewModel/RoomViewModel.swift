@@ -13,7 +13,10 @@ class RoomViewModel: ObservableObject {
     @Published var roomModel: RoomModel?
     
     func fetch() {
-        guard let url = URL(string: "https://run.mocky.io/v3/f9a38183-6f95-43aa-853a-9c83cbb05ecd") else { return }
+        guard let url = URL(string: "https://run.mocky.io/v3/f9a38183-6f95-43aa-853a-9c83cbb05ecd") else {
+            print("Something wrong with API")
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data, error == nil else {

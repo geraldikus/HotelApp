@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmailView: View {
-    @Binding var email: String
+    @State var email: String
     @State private var isEmailValid = true
     @State private var errorMessage = ""
 

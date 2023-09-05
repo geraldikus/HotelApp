@@ -10,10 +10,8 @@ import SwiftUI
 struct BookingView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var viewModel = BookingViewModel()
-    @State private var phone: String = ""
-    @State private var email: String = ""
-    @State private var isEditing: Bool = false
+    @ObservedObject var viewModel = BookingViewModel()
+    
     var colorBack = #colorLiteral(red: 0.9138661623, green: 0.9135121703, blue: 0.9266512394, alpha: 1)
     
     var body: some View {
@@ -80,8 +78,8 @@ struct BookingView: View {
                                 Text("Информация о покупателе")
                                     .font(.custom("SFProDisplay-Medium", size: 22))
                                 
-                                PhoneNumberView(phoneNumber: $phone)
-                                EmailView(email: $email)
+                                PhoneNumberView(phoneNumber: viewModel.phone)
+                                EmailView(email:viewModel.email)
                                 
                                 Text("Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту.")
                                     .font(.system(size: 14))
@@ -89,7 +87,40 @@ struct BookingView: View {
                             }
                             .padding(.horizontal)
                         }
+                    
+                    CustomDisclosureGroup(label: "Первый турист") {
+                        TouristTextField(name: "Имя", binding: viewModel.touristName)
+                        TouristTextField(name: "Фамилия", binding: viewModel.touristLastName)
+                        DateOfBirthView(name: "Дата рождения", binding: viewModel.dateOfBirth)
+                        TouristTextField(name: "Гражданство", binding: viewModel.citizenship)
+                        TouristTextField(name: "Номер загранпаспорта", binding: viewModel.passportNumber)
+                        TouristTextField(name: "Срок действия загранпаспорта", binding: viewModel.passportExpirationDate)
+                    }
+                    CustomDisclosureGroup(label: "Второй турист") {
+                        TouristTextField(name: "Имя", binding: viewModel.touristName)
+                        TouristTextField(name: "Фамилия", binding: viewModel.touristLastName)
+                        DateOfBirthView(name: "Дата рождения", binding: viewModel.dateOfBirth)
+                        TouristTextField(name: "Гражданство", binding: viewModel.citizenship)
+                        TouristTextField(name: "Номер загранпаспорта", binding: viewModel.passportNumber)
+                        TouristTextField(name: "Срок действия загранпаспорта", binding: viewModel.passportExpirationDate)
+                    }
+                    
                     RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.gray)
+                        .frame(height: 60)
+                        .overlay {
+                            HStack {
+                                Text("Добавить туриста")
+                                    .font(.custom("SFProDisplay-Medium", size: 22))
+                                Spacer()
+                                Button {
+                                    //
+                                } label: {
+                                    Image("plusIcon")
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
                 }
                 .background(Color(colorBack))
                 .edgesIgnoringSafeArea(.top)
@@ -109,6 +140,103 @@ struct BookingView: View {
         }
     }
 }
+
+struct CustomDisclosureGroup<Content: View>: View {
+    @State private var isExpanded: Bool = false
+    var label: String
+    @ViewBuilder var content: () -> Content
+
+    var body: some View {
+        VStack {
+            Button(action: {
+                withAnimation {
+                    isExpanded.toggle()
+                }
+            }) {
+                HStack {
+                    Text(label)
+                        .foregroundColor(.black)
+                        .font(.custom("SFProDisplay-Medium", size: 22))
+                    Spacer()
+                    Image(systemName: isExpanded ? "chevron.up.circle" : "chevron.down.circle")
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            if isExpanded {
+                content()
+                    .cornerRadius(5)
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(10)
+    }
+}
+
+
+struct TouristTextField: View {
+    var name: String
+    
+    @State var binding: String
+    @State private var isEditing = false // Добавляем состояние для отслеживания ввода текста
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            if isEditing || !binding.isEmpty {
+                Text(name)
+                    .font(.caption)
+                    .foregroundColor(Color(hex: "A9ABB7", alpha: 1))
+            }
+
+            TextField(name, text: $binding, onEditingChanged: { editing in
+                isEditing = editing // Устанавливаем состояние в true, когда пользователь начинает/прекращает редактирование
+            }, onCommit: {
+                // Ваш код, который выполняется при завершении редактирования (нажатии "Return" на клавиатуре)
+            })
+            .keyboardType(.emailAddress)
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+        }
+        .padding()
+        .background(Color(hex: "F6F6F9", alpha: 1))
+        .cornerRadius(10)
+    }
+}
+
+struct DateOfBirthView: View {
+    var name: String
+    
+    @State var binding: String
+    @State private var isEditing = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            if isEditing || !binding.isEmpty {
+                Text(name)
+                    .font(.caption)
+                    .foregroundColor(Color(hex: "A9ABB7", alpha: 1))
+            }
+            
+            TextField("Дата рождения", text: $binding)
+                .keyboardType(.numberPad)
+                .onChange(of: binding, perform: { newValue in
+                    if newValue.count == 2 {
+                        binding += "."
+                    } else if newValue.count == 5 {
+                        binding += "."
+                    } else if newValue.count > 10 {
+                        binding.removeLast()
+                    }
+                })
+        }
+        .padding()
+        .background(Color(hex: "F6F6F9", alpha: 1))
+        .cornerRadius(10)
+    }
+}
+
+
 
 struct BookingView_Previews: PreviewProvider {
     static var previews: some View {
