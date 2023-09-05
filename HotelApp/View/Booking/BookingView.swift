@@ -5,6 +5,7 @@
 //  Created by Anton on 01.09.23.
 //
 
+
 import SwiftUI
 
 struct BookingView: View {
@@ -95,12 +96,12 @@ struct BookingView: View {
                         let label = index < touristLabels.count ? touristLabels[index] : "Турист \(index + 1)"
                         
                         CustomDisclosureGroup(label: label) {
-                            TouristTextField(name: "Имя", binding: $viewModel.tourists[index].touristName.wrappedValue)
-                            TouristTextField(name: "Фамилия", binding: $viewModel.tourists[index].touristLastName.wrappedValue)
-                            DateOfBirthView(name: "Дата рождения", binding: $viewModel.tourists[index].dateOfBirth.wrappedValue)
-                            TouristTextField(name: "Гражданство", binding: $viewModel.tourists[index].citizenship.wrappedValue)
-                            TouristTextField(name: "Номер загранпаспорта", binding: $viewModel.tourists[index].passportNumber.wrappedValue)
-                            TouristTextField(name: "Срок действия загранпаспорта", binding: $viewModel.tourists[index].passportExpirationDate.wrappedValue)
+                            TouristTextField(name: "Имя", binding: $viewModel.tourists[index].touristName)
+                            TouristTextField(name: "Фамилия", binding: $viewModel.tourists[index].touristLastName)
+                            DateOfBirthView(name: "Дата рождения", binding: $viewModel.tourists[index].dateOfBirth)
+                            TouristTextField(name: "Гражданство", binding: $viewModel.tourists[index].citizenship)
+                            TouristTextField(name: "Номер загранпаспорта", binding: $viewModel.tourists[index].passportNumber)
+                            TouristTextField(name: "Срок действия загранпаспорта", binding: $viewModel.tourists[index].passportExpirationDate)
                         }
                     }
 
@@ -149,7 +150,7 @@ struct BookingView: View {
                     .background(Color(hex: "0D72FF", alpha: 1))
                     .cornerRadius(10)
                     .padding(.horizontal)
-                    
+                    .disabled(!viewModel.touristDataField())
                 }
                 .background(Color(colorBack))
                 .edgesIgnoringSafeArea(.top)
@@ -232,8 +233,7 @@ struct CustomDisclosureGroup<Content: View>: View {
 
 struct TouristTextField: View {
     var name: String
-    
-    @State var binding: String
+    @Binding var binding: String // Измените тип на Binding<String>
     @State private var isEditing = false
 
     var body: some View {
@@ -259,10 +259,11 @@ struct TouristTextField: View {
     }
 }
 
+
 struct DateOfBirthView: View {
     var name: String
     
-    @State var binding: String
+    @Binding var binding: String
     @State private var isEditing = false
     
     var body: some View {

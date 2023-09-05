@@ -47,4 +47,32 @@ class BookingViewModel: ObservableObject {
         }
         task.resume()
     }
+    
+//    func areTouristsDataFilled() -> Bool {
+//        for tourist in tourists {
+//            if tourist.isDataEmpty {
+//                return false
+//            }
+//        }
+//        return true
+//    }
+    
+//    func touristDataField() -> Bool {
+//        if touristName.isEmpty, touristLastName.isEmpty, dateOfBirth.isEmpty, citizenship.isEmpty,
+//           passportNumber.isEmpty, passportExpirationDate.isEmpty {
+//            return false
+//        } else {
+//            return true
+//        }
+//    }
+    
+    func touristDataField() -> Bool {
+        for tourist in tourists {
+            if tourist.isDataEmpty {
+                return false
+            }
+        }
+        return true
+    }
+
 }
