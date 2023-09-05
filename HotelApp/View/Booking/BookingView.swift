@@ -11,7 +11,6 @@ struct BookingView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = BookingViewModel()
-    @ObservedObject var hotelViewModel = HotelViewModel()
     let touristLabels = ["Первый турист", "Второй турист", "Третий турист", "Четвертый турист", "Пятый турист"]
     
     var colorBack = #colorLiteral(red: 0.9138661623, green: 0.9135121703, blue: 0.9266512394, alpha: 1)
@@ -127,37 +126,14 @@ struct BookingView: View {
                     //MARK: - Total price
                     
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(.systemBackground))
                         .frame(height: 160)
                         .overlay {
                             VStack(spacing: 10) {
-                                HStack {
-                                    Text("Тур")
-                                    Spacer()
-                                    Text("\(hotelViewModel.formattedPrice(viewModel.bookingModel?.tour_price ?? 0))")
-                                }
-                                .padding(.horizontal)
-
-                                HStack {
-                                    Text("Топливный сбор")
-                                    Spacer()
-                                    Text("\(hotelViewModel.formattedPrice(viewModel.bookingModel?.fuel_charge ?? 0))")
-                                }
-                                .padding(.horizontal)
-
-                                HStack {
-                                    Text("Сервисный сбор")
-                                    Spacer()
-                                    Text("\(hotelViewModel.formattedPrice(viewModel.bookingModel?.service_charge ?? 0))")
-                                }
-                                .padding(.horizontal)
-
-                                HStack {
-                                    Text("К оплате")
-                                    Spacer()
-                                    Text("\(hotelViewModel.formattedPrice(viewModel.totalCost ?? 0))")
-                                }
-                                .padding(.horizontal)
+                                TotalPrice(title: "Тур", value: Double(viewModel.bookingModel?.tour_price ?? 0))
+                                TotalPrice(title: "Топливный сбор", value: Double(viewModel.bookingModel?.fuel_charge ?? 0))
+                                TotalPrice(title: "Сервисный сбор", value: Double(viewModel.bookingModel?.service_charge ?? 0))
+                                TotalPrice(title: "К оплате", value: Double(viewModel.totalCost ?? 0))
                             }
                         }
                     
@@ -181,6 +157,30 @@ struct BookingView: View {
     }
 }
 
+struct TotalPrice: View {
+    var title: String
+    var value: Double
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .foregroundColor(Color(hex: "828796", alpha: 1))
+            Spacer()
+            Text("\(formattedPrice(value)) ₽")
+                .fontWeight(title == "К оплате" ? .bold : .regular)
+                .foregroundColor(title == "К оплате" ? Color(hex: "0D72FF", alpha: 1) : Color(.label))
+                
+        }
+        .padding(.horizontal)
+    }
+    
+    private func formattedPrice(_ price: Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = " "
+        return numberFormatter.string(from: NSNumber(value: price)) ?? "0"
+    }
+}
 
 
 struct CustomDisclosureGroup<Content: View>: View {
@@ -221,7 +221,7 @@ struct TouristTextField: View {
     var name: String
     
     @State var binding: String
-    @State private var isEditing = false // Добавляем состояние для отслеживания ввода текста
+    @State private var isEditing = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 1) {
@@ -232,7 +232,7 @@ struct TouristTextField: View {
             }
 
             TextField(name, text: $binding, onEditingChanged: { editing in
-                isEditing = editing // Устанавливаем состояние в true, когда пользователь начинает/прекращает редактирование
+                isEditing = editing
             }, onCommit: {
                 // Ваш код, который выполняется при завершении редактирования (нажатии "Return" на клавиатуре)
             })
