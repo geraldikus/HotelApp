@@ -11,6 +11,7 @@ struct BookingView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = BookingViewModel()
+    @ObservedObject var hotelViewModel = HotelViewModel()
     let touristLabels = ["Первый турист", "Второй турист", "Третий турист", "Четвертый турист", "Пятый турист"]
     
     var colorBack = #colorLiteral(red: 0.9138661623, green: 0.9135121703, blue: 0.9266512394, alpha: 1)
@@ -136,6 +137,18 @@ struct BookingView: View {
                                 TotalPrice(title: "К оплате", value: Double(viewModel.totalCost ?? 0))
                             }
                         }
+                    
+                    //MARK: - Navigation
+                    
+                    NavigationLink(destination: PayedView().navigationBarBackButtonHidden(true)) {
+                        Text("Оплатить \(hotelViewModel.formattedPrice(viewModel.totalCost ?? 0)) ₽")
+                            .foregroundColor(.white)
+                    }
+                    .frame(height: 48)
+                    .frame(maxWidth: .infinity)
+                    .background(Color(hex: "0D72FF", alpha: 1))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
                     
                 }
                 .background(Color(colorBack))
