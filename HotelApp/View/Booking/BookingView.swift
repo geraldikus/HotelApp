@@ -11,10 +11,13 @@ struct BookingView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = BookingViewModel()
+    @ObservedObject var hotelViewModel = HotelViewModel()
+    let touristLabels = ["Первый турист", "Второй турист", "Третий турист", "Четвертый турист", "Пятый турист"]
     
     var colorBack = #colorLiteral(red: 0.9138661623, green: 0.9135121703, blue: 0.9266512394, alpha: 1)
     
     var body: some View {
+        
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
@@ -88,25 +91,24 @@ struct BookingView: View {
                             .padding(.horizontal)
                         }
                     
-                    CustomDisclosureGroup(label: "Первый турист") {
-                        TouristTextField(name: "Имя", binding: viewModel.touristName)
-                        TouristTextField(name: "Фамилия", binding: viewModel.touristLastName)
-                        DateOfBirthView(name: "Дата рождения", binding: viewModel.dateOfBirth)
-                        TouristTextField(name: "Гражданство", binding: viewModel.citizenship)
-                        TouristTextField(name: "Номер загранпаспорта", binding: viewModel.passportNumber)
-                        TouristTextField(name: "Срок действия загранпаспорта", binding: viewModel.passportExpirationDate)
+                    ForEach(0..<viewModel.tourists.count, id: \.self) { index in
+                        let label = index < touristLabels.count ? touristLabels[index] : "Турист \(index + 1)"
+                        
+                        CustomDisclosureGroup(label: label) {
+                            TouristTextField(name: "Имя", binding: $viewModel.tourists[index].touristName.wrappedValue)
+                            TouristTextField(name: "Фамилия", binding: $viewModel.tourists[index].touristLastName.wrappedValue)
+                            DateOfBirthView(name: "Дата рождения", binding: $viewModel.tourists[index].dateOfBirth.wrappedValue)
+                            TouristTextField(name: "Гражданство", binding: $viewModel.tourists[index].citizenship.wrappedValue)
+                            TouristTextField(name: "Номер загранпаспорта", binding: $viewModel.tourists[index].passportNumber.wrappedValue)
+                            TouristTextField(name: "Срок действия загранпаспорта", binding: $viewModel.tourists[index].passportExpirationDate.wrappedValue)
+                        }
                     }
-                    CustomDisclosureGroup(label: "Второй турист") {
-                        TouristTextField(name: "Имя", binding: viewModel.touristName)
-                        TouristTextField(name: "Фамилия", binding: viewModel.touristLastName)
-                        DateOfBirthView(name: "Дата рождения", binding: viewModel.dateOfBirth)
-                        TouristTextField(name: "Гражданство", binding: viewModel.citizenship)
-                        TouristTextField(name: "Номер загранпаспорта", binding: viewModel.passportNumber)
-                        TouristTextField(name: "Срок действия загранпаспорта", binding: viewModel.passportExpirationDate)
-                    }
+
+
+                    //MARK: - Add tourist
                     
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(.systemBackground))
                         .frame(height: 60)
                         .overlay {
                             HStack {
@@ -114,13 +116,51 @@ struct BookingView: View {
                                     .font(.custom("SFProDisplay-Medium", size: 22))
                                 Spacer()
                                 Button {
-                                    //
+                                    viewModel.tourists.append(Tourist())
                                 } label: {
                                     Image("plusIcon")
                                 }
                             }
                             .padding(.horizontal)
                         }
+                    
+                    //MARK: - Total price
+                    
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.gray)
+                        .frame(height: 160)
+                        .overlay {
+                            VStack(spacing: 10) {
+                                HStack {
+                                    Text("Тур")
+                                    Spacer()
+                                    Text("\(hotelViewModel.formattedPrice(viewModel.bookingModel?.tour_price ?? 0))")
+                                }
+                                .padding(.horizontal)
+
+                                HStack {
+                                    Text("Топливный сбор")
+                                    Spacer()
+                                    Text("\(hotelViewModel.formattedPrice(viewModel.bookingModel?.fuel_charge ?? 0))")
+                                }
+                                .padding(.horizontal)
+
+                                HStack {
+                                    Text("Сервисный сбор")
+                                    Spacer()
+                                    Text("\(hotelViewModel.formattedPrice(viewModel.bookingModel?.service_charge ?? 0))")
+                                }
+                                .padding(.horizontal)
+
+                                HStack {
+                                    Text("К оплате")
+                                    Spacer()
+                                    Text("\(hotelViewModel.formattedPrice(viewModel.totalCost ?? 0))")
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                    
                 }
                 .background(Color(colorBack))
                 .edgesIgnoringSafeArea(.top)
@@ -140,6 +180,8 @@ struct BookingView: View {
         }
     }
 }
+
+
 
 struct CustomDisclosureGroup<Content: View>: View {
     @State private var isExpanded: Bool = false
