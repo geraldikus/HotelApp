@@ -19,6 +19,8 @@ class BookingViewModel: ObservableObject {
     @Published var citizenship: String = ""
     @Published var passportNumber: String = ""
     @Published var passportExpirationDate: String = ""
+    @Published var isNavigationActive = false
+    @Published var showAlert = false
 
     
     var totalCost: Int? {
@@ -48,24 +50,6 @@ class BookingViewModel: ObservableObject {
         task.resume()
     }
     
-//    func areTouristsDataFilled() -> Bool {
-//        for tourist in tourists {
-//            if tourist.isDataEmpty {
-//                return false
-//            }
-//        }
-//        return true
-//    }
-    
-//    func touristDataField() -> Bool {
-//        if touristName.isEmpty, touristLastName.isEmpty, dateOfBirth.isEmpty, citizenship.isEmpty,
-//           passportNumber.isEmpty, passportExpirationDate.isEmpty {
-//            return false
-//        } else {
-//            return true
-//        }
-//    }
-    
     func touristDataField() -> Bool {
         for tourist in tourists {
             if tourist.isDataEmpty {
@@ -74,5 +58,4 @@ class BookingViewModel: ObservableObject {
         }
         return true
     }
-
 }

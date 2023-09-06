@@ -15,6 +15,10 @@
 		3A00A4F22AA6102D0091314C /* BookingDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00A4F12AA6102D0091314C /* BookingDataView.swift */; };
 		3A00A4F42AA610560091314C /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00A4F32AA610560091314C /* PhoneNumberView.swift */; };
 		3A00A4F62AA610750091314C /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00A4F52AA610750091314C /* EmailView.swift */; };
+		3A3885422AA85C5500995B46 /* TotalPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3885412AA85C5500995B46 /* TotalPriceView.swift */; };
+		3A3885442AA85CC400995B46 /* CustomDisclosureGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3885432AA85CC400995B46 /* CustomDisclosureGroupView.swift */; };
+		3A3885462AA85D7900995B46 /* TouristTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3885452AA85D7900995B46 /* TouristTextFieldView.swift */; };
+		3A3885482AA85D9800995B46 /* DateOfBirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3885472AA85D9800995B46 /* DateOfBirthView.swift */; };
 		3A7A1F232AA70D8F0034615D /* TouristModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A1F222AA70D8F0034615D /* TouristModel.swift */; };
 		3A7A1F252AA72D070034615D /* PayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A1F242AA72D070034615D /* PayedView.swift */; };
 		3A96C7D72AA20926009DD4ED /* WrappedLayoutRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */; };
@@ -45,6 +49,10 @@
 		3A00A4F12AA6102D0091314C /* BookingDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDataView.swift; sourceTree = "<group>"; };
 		3A00A4F32AA610560091314C /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
 		3A00A4F52AA610750091314C /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		3A3885412AA85C5500995B46 /* TotalPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceView.swift; sourceTree = "<group>"; };
+		3A3885432AA85CC400995B46 /* CustomDisclosureGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDisclosureGroupView.swift; sourceTree = "<group>"; };
+		3A3885452AA85D7900995B46 /* TouristTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristTextFieldView.swift; sourceTree = "<group>"; };
+		3A3885472AA85D9800995B46 /* DateOfBirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthView.swift; sourceTree = "<group>"; };
 		3A7A1F222AA70D8F0034615D /* TouristModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristModel.swift; sourceTree = "<group>"; };
 		3A7A1F242AA72D070034615D /* PayedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayedView.swift; sourceTree = "<group>"; };
 		3A96C7D62AA20926009DD4ED /* WrappedLayoutRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayoutRoom.swift; sourceTree = "<group>"; };
@@ -83,6 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				3A96C7D82AA20EEA009DD4ED /* BookingView.swift */,
+				3A3885472AA85D9800995B46 /* DateOfBirthView.swift */,
+				3A3885452AA85D7900995B46 /* TouristTextFieldView.swift */,
+				3A3885432AA85CC400995B46 /* CustomDisclosureGroupView.swift */,
+				3A3885412AA85C5500995B46 /* TotalPriceView.swift */,
 				3A00A4F52AA610750091314C /* EmailView.swift */,
 				3A00A4F32AA610560091314C /* PhoneNumberView.swift */,
 				3A00A4F12AA6102D0091314C /* BookingDataView.swift */,
@@ -291,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ADC2DE62AA07957006B2174 /* HotelView.swift in Sources */,
+				3A3885422AA85C5500995B46 /* TotalPriceView.swift in Sources */,
 				3A00A4E92AA5E0010091314C /* BookingViewModel.swift in Sources */,
 				3ADC2DF52AA07B81006B2174 /* HotelModel.swift in Sources */,
 				3ABF74462AA1F47B003D6262 /* RoomModel.swift in Sources */,
@@ -298,11 +311,14 @@
 				3ADC2DE42AA07957006B2174 /* HotelAppApp.swift in Sources */,
 				3A00A4F42AA610560091314C /* PhoneNumberView.swift in Sources */,
 				3A00A4ED2AA60FCA0091314C /* RoomMoreInfoView.swift in Sources */,
+				3A3885462AA85D7900995B46 /* TouristTextFieldView.swift in Sources */,
 				3A96C7D92AA20EEA009DD4ED /* BookingView.swift in Sources */,
+				3A3885482AA85D9800995B46 /* DateOfBirthView.swift in Sources */,
 				3ABF743F2AA1D0D0003D6262 /* RoomView.swift in Sources */,
 				3ABF74412AA1D95D003D6262 /* HotelMainInfoView.swift in Sources */,
 				3A00A4EB2AA60FA30091314C /* RoomPriceView.swift in Sources */,
 				3ADC2E032AA09C6B006B2174 /* CustomColor.swift in Sources */,
+				3A3885442AA85CC400995B46 /* CustomDisclosureGroupView.swift in Sources */,
 				3A00A4EF2AA60FEE0091314C /* RoomPhotosView.swift in Sources */,
 				3A7A1F232AA70D8F0034615D /* TouristModel.swift in Sources */,
 				3A96C7D72AA20926009DD4ED /* WrappedLayoutRoom.swift in Sources */,
@@ -369,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -423,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

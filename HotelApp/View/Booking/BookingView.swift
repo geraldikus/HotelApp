@@ -11,7 +11,7 @@ import SwiftUI
 struct BookingView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var viewModel = BookingViewModel()
+    @StateObject var viewModel = BookingViewModel()
     @ObservedObject var hotelViewModel = HotelViewModel()
     let touristLabels = ["Первый турист", "Второй турист", "Третий турист", "Четвертый турист", "Пятый турист"]
     
@@ -94,14 +94,13 @@ struct BookingView: View {
                     
                     ForEach(0..<viewModel.tourists.count, id: \.self) { index in
                         let label = index < touristLabels.count ? touristLabels[index] : "Турист \(index + 1)"
-                        
-                        CustomDisclosureGroup(label: label) {
-                            TouristTextField(name: "Имя", binding: $viewModel.tourists[index].touristName)
-                            TouristTextField(name: "Фамилия", binding: $viewModel.tourists[index].touristLastName)
+                        CustomDisclosureGroupView(label: label) {
+                            TouristTextFieldView(name: "Имя", binding: $viewModel.tourists[index].touristName)
+                            TouristTextFieldView(name: "Фамилия", binding: $viewModel.tourists[index].touristLastName)
                             DateOfBirthView(name: "Дата рождения", binding: $viewModel.tourists[index].dateOfBirth)
-                            TouristTextField(name: "Гражданство", binding: $viewModel.tourists[index].citizenship)
-                            TouristTextField(name: "Номер загранпаспорта", binding: $viewModel.tourists[index].passportNumber)
-                            TouristTextField(name: "Срок действия загранпаспорта", binding: $viewModel.tourists[index].passportExpirationDate)
+                            TouristTextFieldView(name: "Гражданство", binding: $viewModel.tourists[index].citizenship)
+                            TouristTextFieldView(name: "Номер загранпаспорта", binding: $viewModel.tourists[index].passportNumber)
+                            TouristTextFieldView(name: "Срок действия загранпаспорта", binding: $viewModel.tourists[index].passportExpirationDate)
                         }
                     }
 
@@ -132,16 +131,31 @@ struct BookingView: View {
                         .frame(height: 160)
                         .overlay {
                             VStack(spacing: 10) {
-                                TotalPrice(title: "Тур", value: Double(viewModel.bookingModel?.tour_price ?? 0))
-                                TotalPrice(title: "Топливный сбор", value: Double(viewModel.bookingModel?.fuel_charge ?? 0))
-                                TotalPrice(title: "Сервисный сбор", value: Double(viewModel.bookingModel?.service_charge ?? 0))
-                                TotalPrice(title: "К оплате", value: Double(viewModel.totalCost ?? 0))
+                                TotalPriceView(title: "Тур", value: Double(viewModel.bookingModel?.tour_price ?? 0))
+                                TotalPriceView(title: "Топливный сбор", value: Double(viewModel.bookingModel?.fuel_charge ?? 0))
+                                TotalPriceView(title: "Сервисный сбор", value: Double(viewModel.bookingModel?.service_charge ?? 0))
+                                TotalPriceView(title: "К оплате", value: Double(viewModel.totalCost ?? 0))
                             }
                         }
                     
                     //MARK: - Navigation
                     
-                    NavigationLink(destination: PayedView().navigationBarBackButtonHidden(true)) {
+                    NavigationLink(
+                        destination: PayedView().navigationBarBackButtonHidden(true),
+                        isActive: $viewModel.isNavigationActive
+                    ) {
+                        EmptyView()
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    Button(action: {
+                        if viewModel.touristDataField() {
+                            viewModel.isNavigationActive = true
+                        } else {
+                            print("Данные не заполнены")
+                            viewModel.showAlert = true
+                        }
+                    }) {
                         Text("Оплатить \(hotelViewModel.formattedPrice(viewModel.totalCost ?? 0)) ₽")
                             .foregroundColor(.white)
                     }
@@ -150,7 +164,13 @@ struct BookingView: View {
                     .background(Color(hex: "0D72FF", alpha: 1))
                     .cornerRadius(10)
                     .padding(.horizontal)
-                    .disabled(!viewModel.touristDataField())
+                }
+                .alert(isPresented: $viewModel.showAlert) {
+                    Alert(
+                        title: Text("Данные не заполнены"),
+                        message: Text("Заполните пожалуйста данные туриста."),
+                        dismissButton: .default(Text("Ok"))
+                    )
                 }
                 .background(Color(colorBack))
                 .edgesIgnoringSafeArea(.top)
@@ -170,129 +190,6 @@ struct BookingView: View {
         }
     }
 }
-
-struct TotalPrice: View {
-    var title: String
-    var value: Double
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .foregroundColor(Color(hex: "828796", alpha: 1))
-            Spacer()
-            Text("\(formattedPrice(value)) ₽")
-                .fontWeight(title == "К оплате" ? .bold : .regular)
-                .foregroundColor(title == "К оплате" ? Color(hex: "0D72FF", alpha: 1) : Color(.label))
-                
-        }
-        .padding(.horizontal)
-    }
-    
-    private func formattedPrice(_ price: Double) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.groupingSeparator = " "
-        return numberFormatter.string(from: NSNumber(value: price)) ?? "0"
-    }
-}
-
-
-struct CustomDisclosureGroup<Content: View>: View {
-    @State private var isExpanded: Bool = false
-    var label: String
-    @ViewBuilder var content: () -> Content
-
-    var body: some View {
-        VStack {
-            Button(action: {
-                withAnimation {
-                    isExpanded.toggle()
-                }
-            }) {
-                HStack {
-                    Text(label)
-                        .foregroundColor(.black)
-                        .font(.custom("SFProDisplay-Medium", size: 22))
-                    Spacer()
-                    Image(isExpanded ? "upArrow" : "downArrow")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if isExpanded {
-                content()
-                    .cornerRadius(5)
-            }
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(10)
-    }
-}
-
-
-struct TouristTextField: View {
-    var name: String
-    @Binding var binding: String // Измените тип на Binding<String>
-    @State private var isEditing = false
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            if isEditing || !binding.isEmpty {
-                Text(name)
-                    .font(.caption)
-                    .foregroundColor(Color(hex: "A9ABB7", alpha: 1))
-            }
-
-            TextField(name, text: $binding, onEditingChanged: { editing in
-                isEditing = editing
-            }, onCommit: {
-                // Ваш код, который выполняется при завершении редактирования (нажатии "Return" на клавиатуре)
-            })
-            .keyboardType(.emailAddress)
-            .autocapitalization(.none)
-            .disableAutocorrection(true)
-        }
-        .padding()
-        .background(Color(hex: "F6F6F9", alpha: 1))
-        .cornerRadius(10)
-    }
-}
-
-
-struct DateOfBirthView: View {
-    var name: String
-    
-    @Binding var binding: String
-    @State private var isEditing = false
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            if isEditing || !binding.isEmpty {
-                Text(name)
-                    .font(.caption)
-                    .foregroundColor(Color(hex: "A9ABB7", alpha: 1))
-            }
-            
-            TextField("Дата рождения", text: $binding)
-                .keyboardType(.numberPad)
-                .onChange(of: binding, perform: { newValue in
-                    if newValue.count == 2 {
-                        binding += "."
-                    } else if newValue.count == 5 {
-                        binding += "."
-                    } else if newValue.count > 10 {
-                        binding.removeLast()
-                    }
-                })
-        }
-        .padding()
-        .background(Color(hex: "F6F6F9", alpha: 1))
-        .cornerRadius(10)
-    }
-}
-
-
 
 struct BookingView_Previews: PreviewProvider {
     static var previews: some View {
