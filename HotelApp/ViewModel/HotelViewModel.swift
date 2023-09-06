@@ -57,5 +57,4 @@ class HotelViewModel: ObservableObject {
             return String(price)
         }
     }
-
 }

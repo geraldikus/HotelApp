@@ -16,7 +16,6 @@ struct RoomView: View {
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-                
                 ForEach(viewModel.roomListModel?.rooms ?? [], id: \.id) { room in
                     VStack {
                         RoundedRectangle(cornerRadius: 10)
@@ -63,13 +62,10 @@ struct RoomView: View {
                             }
                             .padding(.top)
                             .edgesIgnoringSafeArea(.all)
-                        
                     }
                     .background(Color(colorBack))
                     .edgesIgnoringSafeArea(.all)
                 }
-                
-                
             }
             .navigationTitle("Steigenberger Makadi")
             .navigationBarTitleDisplayMode(.inline)

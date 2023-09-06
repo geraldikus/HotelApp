@@ -10,7 +10,7 @@ import SwiftUI
 struct WrappedLayout: View {
     @State var platforms: Array<String>
     @StateObject var viewModel: HotelViewModel
-
+    
     var body: some View {
         GeometryReader { geometry in
             self.generateContent(in: geometry)
@@ -19,11 +19,11 @@ struct WrappedLayout: View {
             viewModel.fetch()
         }
     }
-
+    
     private func generateContent(in g: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
-
+        
         return ZStack(alignment: .topLeading) {
             ForEach(viewModel.hotelModel?.about_the_hotel.peculiarities ?? [], id: \.self) { platform in
                 self.item(for: platform)
@@ -36,7 +36,7 @@ struct WrappedLayout: View {
                         }
                         let result = width
                         if platform == viewModel.hotelModel?.about_the_hotel.peculiarities.last
- {
+                        {
                             width = 0 //last item
                         } else {
                             width -= d.width
@@ -53,7 +53,7 @@ struct WrappedLayout: View {
             }
         }
     }
-
+    
     func item(for text: String) -> some View {
         Text(text)
             .background(Color(hex: "FBFBFC", alpha: 1))
@@ -63,11 +63,6 @@ struct WrappedLayout: View {
     }
 }
 
-//struct TestWrappedLayout_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WrappedLayout(platforms: ["Ninetendo", "XBox", "PlayStation", "PlayStation 2", "PlayStation 3", "PlayStation 4"])
-//    }
-//}
 
 
 

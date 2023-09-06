@@ -19,7 +19,7 @@ struct TotalPriceView: View {
             Text("\(formattedPrice(value)) ₽")
                 .fontWeight(title == "К оплате" ? .bold : .regular)
                 .foregroundColor(title == "К оплате" ? Color(hex: "0D72FF", alpha: 1) : Color(.label))
-                
+            
         }
         .padding(.horizontal)
     }

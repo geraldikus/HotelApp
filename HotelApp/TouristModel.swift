@@ -5,21 +5,6 @@
 //  Created by Anton on 05.09.23.
 //
 
-//import Foundation
-//
-//struct Tourist {
-//    var touristName: String = ""
-//    var touristLastName: String = ""
-//    var dateOfBirth: String = ""
-//    var citizenship: String = ""
-//    var passportNumber: String = ""
-//    var passportExpirationDate: String = ""
-//
-//    var isDataEmpty: Bool {
-//        return touristName.isEmpty && touristLastName.isEmpty && dateOfBirth.isEmpty && citizenship.isEmpty && passportNumber.isEmpty && passportExpirationDate.isEmpty
-//    }
-//}
-
 import Foundation
 
 class Tourist: ObservableObject {

@@ -11,7 +11,7 @@ struct EmailView: View {
     @State var email: String
     @State private var isEmailValid = true
     @State private var errorMessage = ""
-
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 1) {
@@ -41,7 +41,7 @@ struct EmailView: View {
         .cornerRadius(10)
     }
     
-     func validateEmail() {
+    func validateEmail() {
         if !isValidEmail(email) {
             errorMessage = "Email введен неверно"
             isEmailValid = false
@@ -50,7 +50,7 @@ struct EmailView: View {
             errorMessage = ""
         }
     }
-
+    
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegex = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(ru)?$"#
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)

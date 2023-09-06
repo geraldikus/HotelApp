@@ -11,7 +11,7 @@ struct TouristTextFieldView: View {
     var name: String
     @Binding var binding: String
     @State private var isEditing = false
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 1) {
             if isEditing || !binding.isEmpty {
@@ -19,7 +19,7 @@ struct TouristTextFieldView: View {
                     .font(.caption)
                     .foregroundColor(Color(hex: "A9ABB7", alpha: 1))
             }
-
+            
             TextField(name, text: $binding, onEditingChanged: { editing in
                 isEditing = editing
             }, onCommit: {

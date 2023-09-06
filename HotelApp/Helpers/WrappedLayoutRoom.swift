@@ -24,7 +24,7 @@ struct WrappedLayoutRoom: View {
     private func generateContent(in g: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
-
+        
         return ZStack(alignment: .topLeading) {
             ForEach(platforms, id: \.self) { platform in
                 self.item(for: platform)
@@ -37,7 +37,7 @@ struct WrappedLayoutRoom: View {
                         }
                         let result = width
                         if platform == self.platforms.last
- {
+                        {
                             width = 0 //last item
                         } else {
                             width -= d.width
@@ -54,7 +54,7 @@ struct WrappedLayoutRoom: View {
             }
         }
     }
-
+    
     func item(for text: String) -> some View {
         Text(text)
             .background(Color(hex: "FBFBFC", alpha: 1))

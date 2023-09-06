@@ -67,16 +67,13 @@ struct HotelMainInfoView: View {
                     } label: {
                         Text(viewModel.hotelModel?.adress ?? "")
                             .font(.custom("SFProDisplay-Medium", size: 14))
-                            //.frame(maxWidth: .infinity, alignment: .leading)
-                            //.padding(.leading, 30)
-                            //.padding(.top, 5)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 20)
                     .padding(.top, 5)
-                  
                     
-                //MARK: - Price
+                    
+                    //MARK: - Price
                     
                     HStack {
                         Text("от \(viewModel.formattedPrice(viewModel.hotelModel?.minimal_price ?? 0)) ₽")
@@ -87,7 +84,6 @@ struct HotelMainInfoView: View {
                             .foregroundColor(Color(hex: "828796", alpha: 1))
                     }
                     .padding(.horizontal)
-                    //.padding(.top)
                 }
                 
             }

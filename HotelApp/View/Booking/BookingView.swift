@@ -5,7 +5,6 @@
 //  Created by Anton on 01.09.23.
 //
 
-
 import SwiftUI
 
 struct BookingView: View {
@@ -14,7 +13,6 @@ struct BookingView: View {
     @StateObject var viewModel = BookingViewModel()
     @ObservedObject var hotelViewModel = HotelViewModel()
     let touristLabels = ["Первый турист", "Второй турист", "Третий турист", "Четвертый турист", "Пятый турист"]
-    
     var colorBack = #colorLiteral(red: 0.9138661623, green: 0.9135121703, blue: 0.9266512394, alpha: 1)
     
     var body: some View {
@@ -103,8 +101,7 @@ struct BookingView: View {
                             TouristTextFieldView(name: "Срок действия загранпаспорта", binding: $viewModel.tourists[index].passportExpirationDate)
                         }
                     }
-
-
+                    
                     //MARK: - Add tourist
                     
                     RoundedRectangle(cornerRadius: 10)

@@ -11,9 +11,9 @@ struct PayedView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let orderNumber: String = {
-            let randomOrderNumber = String(format: "№%06d", Int.random(in: 1...999999))
-            return randomOrderNumber
-        }()
+        let randomOrderNumber = String(format: "№%06d", Int.random(in: 1...999999))
+        return randomOrderNumber
+    }()
     
     var body: some View {
         NavigationView {
@@ -39,12 +39,12 @@ struct PayedView: View {
                 .navigationTitle("Заказ оплачен")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                    })
+                                        Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.black)
+                })
                 )
                 
                 VStack {
@@ -64,7 +64,6 @@ struct PayedView: View {
         }
     }
 }
-
 
 struct PayedView_Previews: PreviewProvider {
     static var previews: some View {

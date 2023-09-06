@@ -19,8 +19,6 @@ struct HotelView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    //MARK: - Block 1
-                    
                     HotelMainInfoView()
                     HotelDetailsInfoView()
                     
@@ -47,7 +45,6 @@ struct HotelView: View {
             viewModel.fetch()
         }
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
